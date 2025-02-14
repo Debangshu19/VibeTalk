@@ -13,7 +13,7 @@ export const useChatStore = create((set,get) => ({
     getUsers: async () => {
         set({ isUsersLoading: true });
         try {
-          const response = await axios.get("http://localhost:5001/api/message/users", {withCredentials: true});
+          const response = await axios.get("https://vibetalk-cgva.onrender.com/api/message/users", {withCredentials: true});
           console.log("API Response:", response.data); // Debug: Check API response
           set({ users: response.data, isUsersLoading: false });
         } catch (err) {
@@ -25,7 +25,7 @@ export const useChatStore = create((set,get) => ({
     getMessages: async (userId) => {
         set({ isMessagesLoading: true});
         try{
-            const response = await axios.get(`http://localhost:5001/api/message/${userId}`, {withCredentials: true});
+            const response = await axios.get(`https://vibetalk-cgva.onrender.com/api/message/${userId}`, {withCredentials: true});
             set({messages: response.data, isMessagesLoading: false});
         }catch(err){
             toast.error(err.response.data.message || "Messages getting failed");
@@ -35,7 +35,7 @@ export const useChatStore = create((set,get) => ({
     sendMessage: async (messageData) => {
         const {selectedUser, messages} = get(); //we are getting this after user is selected and message is written.(this is not the above state)
         try{
-            const response = await axios.post(`http://localhost:5001/api/message/send/${selectedUser._id}`, messageData, {withCredentials: true});
+            const response = await axios.post(`https://vibetalk-cgva.onrender.com/api/message/send/${selectedUser._id}`, messageData, {withCredentials: true});
             set({messages: [...messages,response.data]});
         }catch(err){
             toast.error(err.response.data.message);
