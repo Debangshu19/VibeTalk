@@ -22,7 +22,7 @@ export const useAuthStore = create ((set, get) => ({
                 throw new Error('No token found');
             }
             const response = await axios.get(
-                "http://localhost:5001/api/auth/check", 
+                "https://vibetalk-cgva.onrender.com/api/auth/check", 
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`, // Send token in the Authorization header
@@ -43,7 +43,7 @@ export const useAuthStore = create ((set, get) => ({
         set({ isSigningUp: true });
         try {
             const response = await axios.post(
-                "http://localhost:5001/api/auth/signup", 
+                "https://vibetalk-cgva.onrender.com/api/auth/signup", 
                 credentials, 
                 { withCredentials: true }
             );
@@ -61,7 +61,7 @@ export const useAuthStore = create ((set, get) => ({
     logout: async () => {
         set({ isLoggingOut: true });
         try {
-            const response = await axios.post("http://localhost:5001/api/auth/logout");
+            const response = await axios.post("https://vibetalk-cgva.onrender.com/api/auth/logout");
             // Remove the token from localStorage
             localStorage.removeItem('jwtToken');
             set({ authUser: null, token: null, isLoggingOut: false });
@@ -78,7 +78,7 @@ export const useAuthStore = create ((set, get) => ({
         set({ isLoggingIn: true });
         try {
             const response = await axios.post(
-                "http://localhost:5001/api/auth/login", 
+                "https://vibetalk-cgva.onrender.com/api/auth/login", 
                 credentials, 
                 { withCredentials: true }
             );
@@ -97,7 +97,7 @@ export const useAuthStore = create ((set, get) => ({
         set({isUpdatingProfile: true});
         try{
             const response = await axios.put(
-                "http://localhost:5001/api/auth/update-profile",
+                "https://vibetalk-cgva.onrender.com/api/auth/update-profile",
                 credentials, 
                 { withCredentials: true }
             );
@@ -114,7 +114,7 @@ export const useAuthStore = create ((set, get) => ({
         if(!authUser || get().socket?.connected){
             return;
         }
-        const socket = io("http://localhost:5001",{
+        const socket = io("https://vibetalk-cgva.onrender.com",{
             query: {
                 userId: authUser._id
             }
