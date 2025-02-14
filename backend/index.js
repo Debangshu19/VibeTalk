@@ -15,7 +15,7 @@ connectToDB();
 
 
 const corsOptions = {
-    origin: 'http://localhost:5173', // Allow frontend
+    origin: 'https://vibe-talk-two.vercel.app', // Allow frontend
     credentials: true, // Allow cookies and authentication headers
 };
 
